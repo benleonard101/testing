@@ -34,13 +34,12 @@ public class BookDAO extends AbstractDAO<Book> {
      * @return list of employees whose first or last name contains the passed
      * parameter as a substring.
      */
-    public List<Book> findById(int id) {
-        StringBuilder builder = new StringBuilder("%");
-        builder.append(id).append("%");
-        return list(
-                namedQuery("com.kainos.login.models.Book.findById")
-                        .setParameter("id", builder.toString())
-        );
+    public Book findById(int id) {
+//        StringBuilder builder = new StringBuilder("%");
+//        builder.append(id).append("%");
+        return
+               uniqueResult(namedQuery("com.kainos.login.models.Book.findById")
+                        .setParameter("id", id));
     }
 //    /**
 //     * Method looks for an employee by her id.

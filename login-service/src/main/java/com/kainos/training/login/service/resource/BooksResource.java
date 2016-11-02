@@ -5,6 +5,7 @@ import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,7 +15,7 @@ import javax.ws.rs.core.Response;
 public class BooksResource {
 
 
-   // public List<Book> books = new ArrayList<>();
+    // public List<Book> books = new ArrayList<>();
 
     private BookDAO dao;
 
@@ -63,7 +64,7 @@ public class BooksResource {
                 .build();
     }
 
-//
+// version 1
 //    @GET
 //    @Path("/{id}")
 //    public Response getBook(@PathParam("id") int id) {
@@ -87,7 +88,17 @@ public class BooksResource {
 //    }
 
 
+    @GET
+    @UnitOfWork
+    @Path("/{id}")
+    public Response getBook(@PathParam("id") int id) {
 
+
+        return Response
+                .status(Response.Status.OK)
+                .entity(dao.findById(id))
+                .build();
+    }
 
 
 }
